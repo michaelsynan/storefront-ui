@@ -6,7 +6,7 @@ const isProd = process.env.PROD === 'true';
 
 export default defineNuxtConfig({
   app: {
-    baseURL: process.env.VITE_DOCS_EXAMPLES_VUE_PATH ? new URL(process.env.VITE_DOCS_EXAMPLES_VUE_PATH).pathname : '',
+    baseURL: process.env.NUXT_DOCS_EXAMPLES_VUE_PATH ? new URL(process.env.NUXT_DOCS_EXAMPLES_VUE_PATH).pathname : '',
     head: {
       htmlAttrs: {
         lang: 'en',
@@ -41,6 +41,12 @@ export default defineNuxtConfig({
           ),
         }
       : {}),
+  },
+  nitro: {
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true,
+    },
   },
   vite: {
     plugins: [
